@@ -4,11 +4,11 @@ import (
 	"fmt"
 	"reflect"
 
+	"github.com/conku/qor"
+	"github.com/conku/qor/resource"
+	"github.com/conku/roles"
+	"github.com/conku/validations"
 	"github.com/jinzhu/gorm"
-	"github.com/qor/qor"
-	"github.com/qor/qor/resource"
-	"github.com/qor/roles"
-	"github.com/qor/validations"
 )
 
 // Resource defined an exchange resource, which includes importing/exporting fields definitions

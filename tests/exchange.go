@@ -1,8 +1,8 @@
 package tests
 
 import (
-	"github.com/qor/exchange"
-	"github.com/qor/qor/test/utils"
+	"github.com/conku/exchange"
+	"github.com/conku/qor/test/utils"
 )
 
 var (

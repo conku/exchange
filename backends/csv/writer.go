@@ -4,10 +4,10 @@ import (
 	"encoding/csv"
 	"fmt"
 
-	"github.com/qor/exchange"
-	"github.com/qor/qor"
-	"github.com/qor/qor/resource"
-	"github.com/qor/roles"
+	"github.com/conku/exchange"
+	"github.com/conku/qor"
+	"github.com/conku/qor/resource"
+	"github.com/conku/roles"
 )
 
 // NewWriter new csv writer

@@ -6,14 +6,14 @@ Data can be optionally validated during import and export.
 
 Data can be optionally processed during import.
 
-[![GoDoc](https://godoc.org/github.com/qor/exchange?status.svg)](https://godoc.org/github.com/qor/exchange)
+[![GoDoc](https://godoc.org/github.com/conku/exchange?status.svg)](https://godoc.org/github.com/conku/exchange)
 
 ## Usage
 
 ```go
 import (
-  "github.com/qor/exchange"
-  "github.com/qor/exchange/backends/csv"
+  "github.com/conku/exchange"
+  "github.com/conku/exchange/backends/csv"
 )
 
 func main() {
