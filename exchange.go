@@ -233,3 +233,55 @@ func (res *Resource) Export(container Container, context *qor.Context, callbacks
 
 	return err
 }
+
+// Export used export data from a exchange Resource
+//     product.Export(csv.New("products.csv"), context)
+func (res *Resource) Export2(container Container, context *qor.Context, db *gorm.DB, callbacks ...func(Progress) error) error {
+	var (
+		total   uint
+		results = res.NewSlice()
+		err     = db.Find(results).Count(&total).Error
+	)
+
+	if err == nil {
+		reflectValue := reflect.Indirect(reflect.ValueOf(results))
+
+		writer, err := container.NewWriter(res, context)
+
+		if err == nil {
+			writer.WriteHeader()
+
+			for i := 0; i < reflectValue.Len(); i++ {
+				var result = reflectValue.Index(i).Interface()
+				var metaValues *resource.MetaValues
+				if metaValues, err = writer.WriteRow(result); err != nil {
+					return err
+				}
+
+				var progress = Progress{
+					Current: uint(i + 1),
+					Total:   total,
+					Value:   result,
+				}
+
+				for _, metaValue := range metaValues.Values {
+					progress.Cells = append(progress.Cells, Cell{
+						Header: metaValue.Name,
+						Value:  metaValue.Value,
+					})
+				}
+
+				for _, callback := range callbacks {
+					if err := callback(progress); err != nil {
+						return err
+					}
+				}
+			}
+			err = writer.Flush()
+		}
+
+		return err
+	}
+
+	return err
+}
