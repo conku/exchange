@@ -1,6 +1,6 @@
 package tests
 
-import "github.com/jinzhu/gorm"
+import "github.com/conku/gorm"
 
 type Product struct {
 	gorm.Model
